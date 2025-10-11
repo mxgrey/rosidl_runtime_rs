@@ -133,6 +133,9 @@ pub trait Message: Clone + Debug + Default + 'static + Send + Sync {
     /// The corresponding RMW-native message type.
     type RmwMsg: RmwMessage;
 
+    /// A string representation of this service's type, e.g. "geometry_msgs/msg/Twist"
+    const TYPE_NAME: &'static str;
+
     /// Converts the idiomatic message into an RMW-native message.
     ///
     /// If the idiomatic message is owned, a slightly more efficient conversion is possible.
@@ -156,6 +159,9 @@ pub trait Service: 'static {
 
     /// The response message associated with this service.
     type Response: Message;
+
+    /// A string representation of this service's type, e.g. "action_msgs/srv/CancelGoal"
+    const TYPE_NAME: &'static str;
 
     /// Get a pointer to the correct `rosidl_service_type_support_t` structure.
     fn get_type_support() -> *const std::ffi::c_void;
@@ -185,6 +191,9 @@ pub trait Action: 'static {
 
     /// The get_result service associated with this action.
     type GetResultService: Service;
+
+    /// A string representation of this action's type, e.g. "example_interfaces/action/Fibonacci"
+    const TYPE_NAME: &'static str;
 
     /// Get a pointer to the correct `rosidl_action_type_support_t` structure.
     fn get_type_support() -> *const std::ffi::c_void;
