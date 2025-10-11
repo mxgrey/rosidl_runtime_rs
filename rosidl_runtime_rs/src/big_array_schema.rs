@@ -2,11 +2,11 @@ use schemars::{JsonSchema, json_schema};
 
 /// This is a dummy struct that helps us to generate schemas for large arrays.
 /// This is part of a workaround for https://github.com/GREsau/schemars/issues/89
-pub struct BigArraySchema<T, const N: usize> {
-    _data: [T; N],
+pub struct BigArraySchema<Array> {
+    _data: Array,
 }
 
-impl<T:JsonSchema, const N: usize> JsonSchema for BigArraySchema<T, N> {
+impl<T: JsonSchema, const N: usize> JsonSchema for BigArraySchema<[T; N]> {
     fn json_schema(_generator: &mut schemars::SchemaGenerator) -> schemars::Schema {
         json_schema!({
             "title": "big fixed-size array",
