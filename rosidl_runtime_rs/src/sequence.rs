@@ -9,6 +9,9 @@ use std::{
 #[cfg(feature = "serde")]
 mod serde;
 
+#[cfg(feature = "schemars")]
+mod schemars;
+
 use crate::traits::SequenceAlloc;
 
 /// An unbounded sequence.

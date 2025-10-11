@@ -10,6 +10,9 @@ use std::{
 #[cfg(feature = "serde")]
 mod serde;
 
+#[cfg(feature = "schemars")]
+mod schemars;
+
 use crate::{sequence::Sequence, traits::SequenceAlloc};
 
 /// A zero-terminated UTF-8 string.
